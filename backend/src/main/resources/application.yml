@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  web:
+    resources:
+      # 開發期：優先從磁碟讀靜態檔，npm run build 後重整瀏覽器即可看到更新，不需重啟 Spring Boot
+      static-locations: file:src/main/resources/static/,classpath:/static/
+      cache:
+        period: 0
+  datasource:
+    url: jdbc:mysql://localhost:3306/seat_system?serverTimezone=Asia/Taipei&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: seat1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+app:
+  jwt:
+    # HS256 簽章密鑰（至少 32 bytes）。正式環境應改由環境變數注入。
+    secret: ${JWT_SECRET:esun-seat-system-very-secret-key-change-me-32bytes!!}
+    expiration-minutes: 120
+  cookie:
+    # 正式環境（HTTPS）應設為 true
+    secure: ${COOKIE_SECURE:false}
+  security:
+    login-max-attempts: 5
+    login-window-minutes: 10
+  reset-code:
+    expiration-minutes: 10
+    max-attempts: 5
+  # 開發模式：忘記密碼時於回應/log 顯示驗證碼（模擬寄送）。正式環境關閉。
+  mock-email: true

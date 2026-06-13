@@ -1,0 +1,20 @@
+# Java / Maven
+backend/target/
+
+# 前端建置產物（建置後輸出至 backend static，亦不入版控）
+backend/src/main/resources/static/
+frontend/node_modules/
+frontend/dist/
+
+# IDE / 工具設定
+.idea/
+*.iml
+.vscode/
+.claude/
+
+# 工具下載暫存
+.downloads/
+
+# OS
+Thumbs.db
+.DS_Store
